@@ -1,0 +1,98 @@
+﻿@model _1670_Final.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="white-text" style="border-bottom: 1px solid gray;">Book Details</h1>
+
+@*<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NameBook)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NameBook)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_author)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_author)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_publisher)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_publisher)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_image)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_image)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_language)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_language)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book_quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book_quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+    </dl>
+</div>*@
+
+<div class="sanpham">
+    <div class="row-left">
+        <img src="@Html.DisplayFor(model => model.Book_image)">
+    </div>
+
+    <form class="right" asp-controller="Cart" asp-action="Create">
+        <div class="right-info white-text">
+            <h3>Name: @Html.DisplayFor(model => model.NameBook)</h3>
+            <p>Price: @Html.DisplayFor(model => model.Book_price)</p>
+            <p>Publisher: @Html.DisplayFor(model => model.Book_publisher)</p>
+            <p>Language: @Html.DisplayFor(model => model.Book_language)</p>
+            <p>Description: @Html.DisplayFor(model => model.Book_description)</p>
+            <p>Category: @Html.DisplayFor(model => model.Category)</p>
+            <p><input  type="submit" class="shoppingcart" name="shoppingcart" value="Shopping now"></p>  
+              
+        </div>
+    </form>
+
+    <div>    
+  
+    <a class="white-text" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
+    <a class="white-text" asp-action="Index">Back to List</a>
+</div>

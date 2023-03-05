@@ -1,0 +1,68 @@
+﻿@model IEnumerable<_1670_Final.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color: white">Index</h1>
+
+<button type="button" class="btn btn-success"><a asp-action="Create">Create New</a></button>
+
+<table class="table">
+    <thead>
+        <tr class="white-text">
+            <th >
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityUser.Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="white-text">
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+            </td>
+            <td>
+                <button type="button" class="btn btn-success">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a></button> |
+                <button type="button" class="btn btn-warning" >
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a></button> |
+                <button type="button" class="btn btn-danger">
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></button>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

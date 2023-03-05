@@ -1,0 +1,90 @@
+﻿@model _1670_Final.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="white-text">Orders Details</h1>
+
+@*<div>
+    <h4>Order</h4>
+    <hr />
+    <tr class="row">
+        <td class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Qty)
+        </td>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Qty)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.book)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.book.Book_author)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+    </tr>
+</div>*@
+
+<table style="width:100%; text-align: center; border-collapse: collapse; border = 1px solid white;">
+  <tr class="white-text">
+    <th>Qty</th>
+    <th>Phone</th>
+    @*<th>Image</th>*@
+    <th>Price</th>    
+    <th>BookID</th>
+    <th>BookName</th>
+    <th>UserID</th>
+    @*<th>Email</th>*@
+    @*<th>Manage</th>*@
+   
+  </tr>
+    <tr class="white-text">
+        <td>@Html.DisplayFor(model => model.Qty)</td>
+        <td>@Html.DisplayFor(model => model.Phone)</td>
+        @*<td><img src="@Html.DisplayFor(model => model.Book_image)" width="150px"></td>*@
+        <td>@Html.DisplayFor(model => model.Price)</td>
+        <td>@Html.DisplayFor(model => model.book.Id)</td>
+        <td>@Html.DisplayFor(model => model.book.NameBook)</td>
+        <td>@Html.DisplayFor(model => model.IdentityUser.Id)</td>
+        @*<td><a href="shoppingcart.php?xoa=<?php echo $cart_item['id'] ?>">Delete</a></td>*@
+  </tr>
+     <tr>
+    <td colspan="8">
+    	@*<p style="float: left;">Tổng tiền: <?php echo $tongtien ?></p><br/>*@
+      
+    	@*<p style="float: right;"><a href="shoppingcart.php?xoatatca=1">Delete All</a></p>*@
+      <div style="clear: both;"></div>
+        
+      </td>   
+  </tr>
+ 
+</table>
+
+<div class="white-text"">
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,111 @@
+﻿@*@Model IEnumerable<_1670_Final.Models.Book>*@
+@model _1670_Final.Models.Category
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="slide">
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/book1.jpg" alt="" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/book2.jpg" alt="" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/book3.jpg" alt="" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/book4.jpg" alt="" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/book5.jpg" alt="" class="d-block w-100">
+            </div>
+        </div>
+
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</div>
+<h1 style="color: white">Our Products</h1>
+<button type="button" class="btn btn-success"><a asp-action="Create">Create New</a></button>
+<form asp-controller="Books" asp-action="Index" style="border-bottom: 1px solid black;">
+    <p class="white-text">
+        <select asp-for="Bookcate" asp-items="Model.category">
+            <option value="">All</option>
+        </select><br>
+
+       <input type="text" name="search" />
+        <input type="submit" value="search" />
+    </p>
+</form>
+   
+
+    @foreach (var item in Model.books) {
+        @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameBook)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_price)
+            </td>
+            <td>
+              <img src="@item.Book_image" height="160" width="120" asp-append-version="true" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>*@
+
+            <div class="list">
+                <ul class="product">                    
+                    <li class="items">                        
+                        <img class="img img-responsive" src="@item.Book_image" height="160" width="120">
+                        <p class="name">Product: @Html.DisplayFor(modelItem => item.NameBook)</p>
+                        <p class="price">Price: @Html.DisplayFor(modelItem => item.Book_price)</p>
+                        <p style="float: left; font-size: 11px; padding-left:10px;" class="tendanhmuc">Publisher: @Html.DisplayFor(modelItem => item.Book_publisher)</p><br>
+                        @*--------------button------------*@
+                        <button type="button" class="btn btn-success" ><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></button>
+                        <button type="button" class="btn btn-danger"><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></button>
+                        <button type="button" class="btn btn-warning"><a asp-action="Details" asp-route-id="@item.Id">Details</a></button>
+                       
+                    </li>                    
+                </ul>
+          </div>
+}

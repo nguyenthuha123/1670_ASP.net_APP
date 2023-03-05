@@ -1,0 +1,397 @@
+﻿@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var data = Context.Session.GetString("cart");
+ 
+    int coutCart = 0;
+    if (data == null)
+    {
+        coutCart = 0;
+    }
+    else
+    {
+        var data2 = Context.Session.GetString("cart");
+        List<Cart> dataCart = JsonConvert.DeserializeObject<List<Cart>>(data2);
+        foreach (var item in dataCart)
+        {
+            coutCart += item.Qty;
+        }
+ 
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _1670_Final</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/_1670_Final.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Book.css" asp-append-version="true" />
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="~/csslogin/font-awesome.css">
+    <link rel="stylesheet" href="~/csslogin/style.css">
+    <!-- google fonts  -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/1147679ae7.js' crossorigin='anonymous'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Book", false)
+    <style>
+        /*-------------header--------------*/
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            /*padding: 0px 100px;*/
+            height: 70px;
+            width: 100%;
+            align-items: center;
+            /* background-color: rgb(51, 51, 51); */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-color: rgba(51, 51, 51, 0.637);
+        }
+        .navbar-brand{
+            margin-left: 20px;
+        }
+        .nav-item{
+            padding-left: 5px;
+        }       
+        nav a:hover{
+            color: red;            
+        }
+
+        .form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .form-search {
+            height: 40px;
+            width: 30%;
+            margin-top: 20px;
+        }
+
+        .form-sub {
+            float: left;
+            height: 40px;
+        }
+        .carousel-inner{                     
+            position: center ;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;            
+        }        
+        /*---------------main------------------*/
+        .container{
+            margin-top: 8%; 
+        }
+        .white-text {
+            color: white;
+        }
+        .list {
+            width: 20%;
+            height: 20%;            
+            float: left;
+            list-style: none;
+        }
+        .list-cart{
+            margin-top: 20px;
+        }
+        .img {
+            width: 80%;
+            /* height: 150px; */
+            text-align: center;
+        }
+
+        .item{
+            list-style: none;
+            /*width: calc(120% - 20px);*/
+            width: 100%;
+            text-align: center;
+            padding: 40px 0;
+            float: left;
+            margin: 30px;
+            height: 400px;
+            background-color: aliceblue;
+        }
+        .items {
+            list-style: none;
+            /*width: calc(120% - 20px);*/
+            width: 100%;
+            text-align: center;
+            padding: 40px 0;
+            float: left;
+            margin: 30px;
+            height: 500px;
+            background-color: aliceblue;
+        }
+        .name {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: 1px;
+            color: black;
+            list-style: none;
+            font-style: none;
+        }
+
+        .price {
+            font-size: 12px;
+            font-family: 'Times New Roman', Times, serif;
+            /* margin-top: 1px; */
+            color: black;
+        }
+        
+        a{
+            color: black;
+            font-style: none;
+        }
+        button{
+            display: flex;
+        }
+        button a{
+            color: white;
+            text-decoration: none;
+        }
+        button a:hover {
+            color: aliceblue;
+        }
+        /*----------------footer-------------------*/
+        footer {
+            border-top: 1px solid #fff;
+            background-color: yellowgreen;
+            color: rgb(255, 255, 255);
+            /* padding-bottom: 1%; */
+            height: 350px;
+            clear: both;            
+            width: 100%;
+        }
+        .footercss{
+            padding-top: 60px;
+        }
+        .logo-app {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .nav {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            list-style: none;
+        }
+
+        .nav > li > a {
+            margin: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav > li > a:hover {
+            color: rgb(180, 12, 12);
+        }
+
+        .list-group {
+            text-align: center;
+            padding: 2% 0 3% 0%;
+            display: block;
+            /* border-bottom: 1px solid #fff; */
+        }
+
+        .list-group > a {
+            margin-left: 10px;
+        }
+
+        .footer-doc {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 15px;
+            width: 50%;
+            float: left;
+            margin-left: 15px;
+        }
+        /* ------------------Terms--------------------- */
+        .terms {
+            padding: 10% 25% 8% 1%;
+            color: aliceblue;
+            background-color: rgb(109, 109, 109);
+        }
+
+        div > h1 {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            /* text-decoration: underline; */
+        }
+
+        .term-link {
+            color: aliceblue;
+            padding-left: 1%;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            font-style: bold;
+        }
+
+        .term-link:hover {
+            color: rgb(180, 12, 12);
+        }
+        /*------------Add cart---------------*/
+        .sanpham {
+            display: flex;
+            /*border: 1px solid gray;*/
+        }
+
+        .row-left {
+            width: 30%;
+        }
+
+        .row-left img {
+            width: 110%;
+            /* float: left; */
+            padding: 20px 0 0 20px;
+            /* border: 2px solid #ddd; */
+        }
+
+        .right {
+            /* display: flex; */
+            width: 60%;
+            padding: 0 0 0 20px;
+            /* border: 2px solid #ddd; */
+            float: right;
+        }
+
+        .right-info {
+            padding: 20px 0 0 50px;
+            width: 100%;
+        }
+
+        .shoppingcart {
+            border-radius: 8px;
+            font-size: 24px;
+            padding: 14px 40px;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+            transition-duration: 0.4s
+        }
+
+        .shoppingcart:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark visible">
+            
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Online Book Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">                        
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Books" asp-action="Index">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">Check Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                        </li>
+                    </ul>
+                    <form asp-controller="Books" asp-action="Index">
+                        <p class="white-text form">
+                            <input class="form-search me-2" type="text" name="search">
+                            <input class="form-sub" type="submit" value="search" />
+                        </p>
+                    </form>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+           
+
+        </nav>
+    </header>
+
+      <div class="container">
+        <main role="main" class="pb-3">
+             <br />
+ 
+        <a asp-area=""
+            asp-controller="Cart"
+            asp-action="ListCart"
+            style="background-color: aliceblue; padding:10px;">Cart
+            <img src="~/images/cart.png" style="width:25px !important;height:25px;display:inline-block;" />
+            @coutCart
+         </a>
+ 
+        <br />
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="container">
+        <main role="main" >
+            @RenderBody()
+        </main>
+    </div>
+    <div class="footercss">
+        <footer class="border-top footer text-muted">
+            <section class="app-container">
+                <!-- --------------------Footer Logo--------------    -->
+                <div class="logo-app">
+                    <a asp-controller="Home" asp-action="Index" style="color: white; font-size: 50px; font-style: bold; text-decoration: none;">Online Book Store</a>
+                </div>
+                <!-- -------------Footer link--------------- -->
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">NEWS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DEALERS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACT</a>
+                    </li>
+                </ul>
+                <!-- -------------------Footer Icons--------------------- -->
+                <div class="list-group">
+                    <a href="#"><img src="img/youtube.jpg" alt=""></a>
+                    <a href="#"><img src="img/teleg.jpg" alt=""></a>
+                    <a href="#"><img src="img/tiktok.jpg" alt=""></a>
+                </div>
+                <p>
+                    <a href="#" class="term-link">Terms & Conditions</a>
+                </p>
+                <p class="footer-doc">
+                    © 2023-Online Book Store
+                </p>
+            </section>
+        </footer>
+    </div>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
